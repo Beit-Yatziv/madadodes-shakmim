@@ -8,6 +8,7 @@
     />
     <title>הגעת ילדי גן שקמים</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   </head>
   <body>
     <header>
@@ -19,39 +20,53 @@
       <img src="assets/madadodes-logo.png" alt="לוגו מדדודים" id="right-logo" />
     </header>
 
-    <div id="graph">
-      <!-- Sections for each transportation method -->
-      <div class="transport" id="walking">
-        <div class="transport-way">
-          <span>בהליכה</span>
-          <img class="trans-img" src="assets/walk.png" alt="הליכה" />
-        </div>
-        <div class="count">0</div>
+    <!-- Step 1: Names Section -->
+    <div class="step-section" id="step-1-section">
+      <div class="step-header">
+        <div class="step-badge">1</div>
+        <span class="step-title">מצאו את השם שלכם ולחצו עליו 👆</span>
       </div>
-      <div class="transport" id="car">
-        <div class="transport-way">
-          <span>במכונית</span>
-          <img class="trans-img" src="assets/car.png" alt="מכונית" />
-        </div>
-        <div class="count">0</div>
-      </div>
-      <div class="transport" id="bus">
-        <div class="transport-way">
-          <span>באוטובוס</span>
-          <img class="trans-img" src="assets/bus.png" alt="אוטובוס" />
-        </div>
-        <div class="count">0</div>
-      </div>
-      <div class="transport" id="bicycle">
-        <div class="transport-way">
-          <span>באופניים</span>
-          <img class="trans-img" src="assets/cycle.png" alt="אופניים" />
-        </div>
-        <div class="count">0</div>
-      </div>
+      <div id="names"></div>
     </div>
 
-    <div id="names"></div>
+    <!-- Step 2: Transport Section -->
+    <div class="step-section" id="step-2-section">
+      <div class="step-header">
+        <div class="step-badge">2</div>
+        <span class="step-title">איך הגעתם היום לגן? לחצו על התמונה 🚗</span>
+      </div>
+      <div id="graph">
+        <!-- Sections for each transportation method -->
+        <div class="transport" id="walking">
+          <div class="transport-way">
+            <span>בהליכה</span>
+            <i class="fas fa-walking trans-icon"></i>
+          </div>
+          <div class="count">0</div>
+        </div>
+        <div class="transport" id="car">
+          <div class="transport-way">
+            <span>במכונית</span>
+            <i class="fas fa-car trans-icon"></i>
+          </div>
+          <div class="count">0</div>
+        </div>
+        <div class="transport" id="bus">
+          <div class="transport-way">
+            <span>באוטובוס</span>
+            <i class="fas fa-bus trans-icon"></i>
+          </div>
+          <div class="count">0</div>
+        </div>
+        <div class="transport" id="bicycle">
+          <div class="transport-way">
+            <span>באופניים</span>
+            <i class="fas fa-bicycle trans-icon"></i>
+          </div>
+          <div class="count">0</div>
+        </div>
+      </div>
+    </div>
     <script src="select-and-tap.js"></script>
   </body>
 </html>

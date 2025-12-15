@@ -43,6 +43,8 @@ function setupSelectAndTap() {
   const namesContainer = document.getElementById("names");
   const transports = document.querySelectorAll(".transport");
 
+  const step2Section = document.getElementById("step-2-section");
+
   // Function to handle name selection
   function selectName(name) {
     // Only allow selection from the names container
@@ -55,23 +57,24 @@ function setupSelectAndTap() {
     selectedName.classList.add("selected");
     const allNames = Array.from(document.querySelectorAll(".name"));
     disableOtherNames(allNames, name);
+
+    // Highlight step 2 to guide the child
+    step2Section.classList.add("active-step");
   }
 
-  // Add event listeners to names container (event delegation)
-  namesContainer.addEventListener("click", (e) => {
-    const name = e.target.closest(".name");
-    if (name && name.parentElement === namesContainer) {
-      e.stopPropagation();
-      selectName(name);
-    }
-  });
-
-  // Add touch support for better mobile/touch screen experience
-  namesContainer.addEventListener("touchend", (e) => {
+  // Use touchstart for faster response on touch devices
+  namesContainer.addEventListener("touchstart", (e) => {
     const name = e.target.closest(".name");
     if (name && name.parentElement === namesContainer) {
       e.preventDefault();
-      e.stopPropagation();
+      selectName(name);
+    }
+  }, { passive: false });
+
+  // Fallback click for non-touch devices
+  namesContainer.addEventListener("click", (e) => {
+    const name = e.target.closest(".name");
+    if (name && name.parentElement === namesContainer) {
       selectName(name);
     }
   });
@@ -86,14 +89,13 @@ function setupSelectAndTap() {
       transport.insertBefore(namesContainerInTransport, countElement);
     }
 
-    transport.addEventListener("click", (e) => {
-      e.stopPropagation();
+    // Function to handle transport selection
+    function handleTransportSelect() {
       if (selectedName && selectedName.parentElement === namesContainer) {
         // Create a clone for the transport box
         const nameClone = selectedName.cloneNode(true);
         nameClone.classList.remove("selected", "disabled");
-        nameClone.style.transform = "scale(1)";
-        nameClone.style.animation = "none";
+        nameClone.style.transform = "";
 
         // Get or create names container
         let container = transport.querySelector(".names-container");
@@ -111,41 +113,21 @@ function setupSelectAndTap() {
         selectedName.remove();
         selectedName = null;
 
-        // Re-enable all remaining names
+        // Re-enable all remaining names and remove step 2 highlight
         const remainingNames = Array.from(document.querySelectorAll(".name"));
         enableAllNames(remainingNames);
+        step2Section.classList.remove("active-step");
       }
-    });
+    }
 
-    // Add touch support
-    transport.addEventListener("touchend", (e) => {
+    // Use touchstart for faster response on touch devices
+    transport.addEventListener("touchstart", (e) => {
       e.preventDefault();
-      e.stopPropagation();
-      if (selectedName && selectedName.parentElement === namesContainer) {
-        const nameClone = selectedName.cloneNode(true);
-        nameClone.classList.remove("selected", "disabled");
-        nameClone.style.transform = "scale(1)";
-        nameClone.style.animation = "none";
+      handleTransportSelect();
+    }, { passive: false });
 
-        // Get or create names container
-        let container = transport.querySelector(".names-container");
-        if (!container) {
-          container = document.createElement("div");
-          container.classList.add("names-container");
-          const countElement = transport.querySelector(".count");
-          transport.insertBefore(container, countElement);
-        }
-
-        container.appendChild(nameClone);
-        updateCount(transport);
-
-        selectedName.remove();
-        selectedName = null;
-
-        const remainingNames = Array.from(document.querySelectorAll(".name"));
-        enableAllNames(remainingNames);
-      }
-    });
+    // Fallback click for non-touch devices
+    transport.addEventListener("click", handleTransportSelect);
   });
 }
 
@@ -172,6 +154,7 @@ function updateCount(transport) {
 
 function setupResetButton(childrenList) {
   const resetBtn = document.getElementById("reset-btn");
+  const step2Section = document.getElementById("step-2-section");
 
   function resetAll() {
     // Remove all names from transport boxes
@@ -187,15 +170,19 @@ function setupResetButton(childrenList) {
     // Recreate all name divs in the names container
     createNameDivs(childrenList);
 
+    // Remove step 2 highlight
+    step2Section.classList.remove("active-step");
+
     // Re-setup event listeners to recreate containers
     setupSelectAndTap();
   }
 
-  resetBtn.addEventListener("click", resetAll);
-
-  // Add touch support
-  resetBtn.addEventListener("touchend", (e) => {
+  // Use touchstart for faster response
+  resetBtn.addEventListener("touchstart", (e) => {
     e.preventDefault();
     resetAll();
-  });
+  }, { passive: false });
+
+  // Fallback click for non-touch devices
+  resetBtn.addEventListener("click", resetAll);
 }
