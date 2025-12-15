@@ -43,6 +43,8 @@ function setupSelectAndTap() {
   const namesContainer = document.getElementById("names");
   const transports = document.querySelectorAll(".transport");
 
+  const step2Section = document.getElementById("step-2-section");
+
   // Function to handle name selection
   function selectName(name) {
     // Only allow selection from the names container
@@ -55,6 +57,9 @@ function setupSelectAndTap() {
     selectedName.classList.add("selected");
     const allNames = Array.from(document.querySelectorAll(".name"));
     disableOtherNames(allNames, name);
+
+    // Highlight step 2 to guide the child
+    step2Section.classList.add("active-step");
   }
 
   // Add event listeners to names container (event delegation)
@@ -111,9 +116,10 @@ function setupSelectAndTap() {
         selectedName.remove();
         selectedName = null;
 
-        // Re-enable all remaining names
+        // Re-enable all remaining names and remove step 2 highlight
         const remainingNames = Array.from(document.querySelectorAll(".name"));
         enableAllNames(remainingNames);
+        step2Section.classList.remove("active-step");
       }
     });
 
@@ -142,8 +148,10 @@ function setupSelectAndTap() {
         selectedName.remove();
         selectedName = null;
 
+        // Re-enable all remaining names and remove step 2 highlight
         const remainingNames = Array.from(document.querySelectorAll(".name"));
         enableAllNames(remainingNames);
+        step2Section.classList.remove("active-step");
       }
     });
   });
@@ -172,6 +180,7 @@ function updateCount(transport) {
 
 function setupResetButton(childrenList) {
   const resetBtn = document.getElementById("reset-btn");
+  const step2Section = document.getElementById("step-2-section");
 
   function resetAll() {
     // Remove all names from transport boxes
@@ -186,6 +195,9 @@ function setupResetButton(childrenList) {
 
     // Recreate all name divs in the names container
     createNameDivs(childrenList);
+
+    // Remove step 2 highlight
+    step2Section.classList.remove("active-step");
 
     // Re-setup event listeners to recreate containers
     setupSelectAndTap();
