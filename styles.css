@@ -239,6 +239,27 @@ h1 {
   object-fit: contain;
 }
 
+.trans-icon {
+  font-size: 60px;
+  color: #2d3748;
+}
+
+#walking .trans-icon {
+  color: #22c55e;
+}
+
+#car .trans-icon {
+  color: #3b82f6;
+}
+
+#bus .trans-icon {
+  color: #fbbf24;
+}
+
+#bicycle .trans-icon {
+  color: #ec4899;
+}
+
 .name.selected {
   border: 4px solid #fbbf24;
   background: #fbbf24;
@@ -344,6 +365,10 @@ h1 {
     height: 80px;
   }
 
+  .trans-icon {
+    font-size: 80px;
+  }
+
   .count {
     font-size: 2.8rem;
   }
@@ -403,6 +428,10 @@ h1 {
   .trans-img {
     width: 50px;
     height: 50px;
+  }
+
+  .trans-icon {
+    font-size: 50px;
   }
 
   .count {
@@ -477,6 +506,10 @@ h1 {
   .trans-img {
     width: 40px;
     height: 40px;
+  }
+
+  .trans-icon {
+    font-size: 40px;
   }
 
   .count {
