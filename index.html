@@ -1,50 +1,57 @@
 <!DOCTYPE html>
 <html lang="he">
-<head>
-<meta charset="UTF-8">
-<title>הגעת ילדי גן שקמים</title>
-<link rel="stylesheet" href="styles.css">
-
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>הגעת ילדי גן שקמים</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <header>
-        <img src="assets/logo-shakmim.jpg" alt="Logo" id="left-logo">
+      <img src="assets/logo-shakmim.jpg" alt="לוגו שקמים" id="left-logo" />
+      <div class="header-content">
         <h1>הגעת ילדי גן שקמים - כיצד הגעתי לגן?</h1>
-        <img src="assets/madadodes-logo.png" alt="Logo" id="right-logo">
+        <button id="reset-btn" class="reset-button">איפוס</button>
+      </div>
+      <img src="assets/madadodes-logo.png" alt="לוגו מדדודים" id="right-logo" />
     </header>
-    
+
     <div id="graph">
-        <!-- Sections for each transportation method -->
-        <div class="transport" id="walking">
-            <div class="transport-way">בהליכה
-                <img class="trans-img" src="assets/walk.png" alt="Logo" id="right-logo">
-
-            </div>
-            <div class="count">0</div>
+      <!-- Sections for each transportation method -->
+      <div class="transport" id="walking">
+        <div class="transport-way">
+          <span>בהליכה</span>
+          <img class="trans-img" src="assets/walk.png" alt="הליכה" />
         </div>
-        <div class="transport" id="car">
-            <div class="transport-way">במכונית
-                <img class="trans-img" src="assets/car.png" alt="Logo" id="right-logo">
-            </div>
-            <div class="count">0</div>
+        <div class="count">0</div>
+      </div>
+      <div class="transport" id="car">
+        <div class="transport-way">
+          <span>במכונית</span>
+          <img class="trans-img" src="assets/car.png" alt="מכונית" />
         </div>
-        <div class="transport" id="bus">
-            <div class="transport-way">באוטובוס
-                <img class="trans-img" src="assets/bus.png" alt="Logo" id="right-logo">
-            </div>
-            <div class="count">0</div>
-
+        <div class="count">0</div>
+      </div>
+      <div class="transport" id="bus">
+        <div class="transport-way">
+          <span>באוטובוס</span>
+          <img class="trans-img" src="assets/bus.png" alt="אוטובוס" />
         </div>
-        <div class="transport" id="bicycle">
-            <div class="transport-way">באופניים
-                <img class="trans-img" src="assets/cycle.png" alt="Logo" id="right-logo">
-            </div>
-            <div class="count">0</div>
+        <div class="count">0</div>
+      </div>
+      <div class="transport" id="bicycle">
+        <div class="transport-way">
+          <span>באופניים</span>
+          <img class="trans-img" src="assets/cycle.png" alt="אופניים" />
         </div>
+        <div class="count">0</div>
+      </div>
     </div>
-    
-    <div id="names">
-    </div>
+
+    <div id="names"></div>
     <script src="select-and-tap.js"></script>
-</body>
+  </body>
 </html>
