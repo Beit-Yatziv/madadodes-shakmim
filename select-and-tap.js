@@ -20,6 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
     "אדם",
     "בסמה",
     "מאיסם",
+    "אדל.א",
+    "לירוי",
+    "ניקול",
   ];
 
   createNameDivs(childrenList);
